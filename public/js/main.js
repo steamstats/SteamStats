@@ -29,11 +29,28 @@ function LogoutFunction() {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "X-Requested-With": "XMLHttpRequest",
-        "X-CSRF-Token": csrfToken 
+        "X-CSRF-Token": csrfToken
     },
         credentials: "same-origin",
         method: 'POST'
     });
-    alert("you were automatically logged out");
-location.reload();
+    location.reload();
+    alert("Timeout: idle. You were automatically logged out!");
+
 }
+
+
+if ($(".alert-success")) {
+  $(".alert-success").delay(5000).slideUp(200, function() {
+      $(this).alert('close');
+  });
+}
+if ($(".alert-danger")) {
+  $(".alert-danger").delay(5000).slideUp(200, function() {
+      $(this).alert('close');
+  });
+}
+
+$(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});

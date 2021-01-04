@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Kyslik\ColumnSortable\Sortable;
 
 class Game extends Model
 {
     use HasFactory;
+    use Sortable;
 
-    public function Genre()
+    public function genres()
     {
         return $this->belongsToMany('App\Models\Genre');
     }
@@ -20,13 +22,20 @@ class Game extends Model
     protected $guarded = [];
 
     protected $fillable = [
+        'id',
         'appid',
         'name',
         'price',
+        'price_formatted',
         'image'
     ];
 
-    public $incrementing = false;
+    protected $sortable  = [
+        'appid',
+        'name',
+        'price'
+
+    ];
 
     public function getGames(){
 
@@ -45,6 +54,13 @@ class Game extends Model
                 return $url[$appid];
             }
         }
+    }
+
+    public function getFeaturedCategories(){
+
+        $url = http::get("https://store.steampowered.com/api/featuredcategories")->json();
+
+        return $this->getFeaturedCategories = $url;
     }
 
 }

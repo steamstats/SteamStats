@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -20,41 +21,75 @@ class ProfileController extends Controller
      */
 
 
-    public function index()
+    public function index(Request $request)
     {
+
+        $id = $request->id;
         $data = new Profile;
-        $data = $data->getProfileSummary();
+        $data = $data->getProfileSummary($id);
 
 
         $banInfo = new profile;
-        $banInfo = $banInfo->getBanInfo();
+        $banInfo = $banInfo->getBanInfo($id);
 
         $recentlyPlayedGames = new profile;
-        $recentlyPlayedGames = $recentlyPlayedGames->getRecentlyPlayedGames();
+        $recentlyPlayedGames = $recentlyPlayedGames->getRecentlyPlayedGames($id);
 
         $playerLevel = new profile;
-        $playerLevel = $playerLevel->getPlayerLevel();
+        $playerLevel = $playerLevel->getPlayerLevel($id);
 
         $profileBackground = new profile;
-        $profileBackground = $profileBackground->getProfileBackground();
+        $profileBackground = $profileBackground->getProfileBackground($id);
+
+        $resolvedurl = new profile;
+        $resolvedurl = $resolvedurl->resolveCustomURL($id);
+
+        $customFrame = new profile;
+        $customFrame = $customFrame->getAvatarFrame($id);
+
+        $ownedGames = new profile;
+        $ownedGames = $ownedGames->getOwnedGames($id);
+
+        $playtimeForever = 0;
+        if(isset($ownedGames['response']['games'])) {
+            foreach ($ownedGames['response']['games'] as $test) {
+                $playtimeForever = $playtimeForever + $test['playtime_forever'];
+            }
+            $hoursOnRecord = round($playtimeForever / 60,1);
+            $averagePlaytime = round($hoursOnRecord / $ownedGames['response']['game_count'],1);
+        }
 
 
         $gamedata = [];
 
-        if (!empty($data['response'])) {
+        if (!empty($data['response']['players'])) {
             $gamedata['data'] = $data['response']['players'][0];
+        } else {
+            return redirect()->back();
         }
         if (!empty($banInfo)) {
             $gamedata['banInfo'] = $banInfo['players'][0];
+        } else {
+            return redirect()->back();
         }
-        if (!empty($recentlyPlayedGames['response'])) {
+        if (!empty($recentlyPlayedGames['response']['games'])) {
             $gamedata['recentlyPlayedGames'] = $recentlyPlayedGames['response']['games'];
         }
         if (!empty($playerLevel['response'])) {
             $gamedata['playerLevel'] = $playerLevel['response'];
+        } else {
+            return redirect()->back();
         }
         if (!empty($profileBackground['response'])) {
             $gamedata['profileBackground'] = $profileBackground['response']['profile_background'];
+        }
+        if(!empty($customFrame['response'])) {
+            $gamedata['customAvatarFrame'] = $customFrame['response']['avatar_frame'];
+        }
+        if(!empty(($ownedGames['response']))) {
+            $gamedata['ownedGames'] = $ownedGames['response'];
+            $gamedata['averagePlaytime'] = $averagePlaytime;
+            $gamedata['hoursOnRecord'] = $hoursOnRecord;
         }
 
         return view('profile', ['gamedata'=>$gamedata]);
@@ -85,11 +120,81 @@ class ProfileController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $id = $request->id;
+        $resolvedurl = new profile;
+        $resolvedurl = $resolvedurl->resolveCustomURL($id);
+
+        if(isset($resolvedurl['response']['steamid'])) {
+            $id = $resolvedurl['response']['steamid'];
+        } elseif(isset($resolvedurl['response']['message'])){
+            $id = $request->id;
+        }
+
+        $data = new Profile;
+        $data = $data->getProfileSummary($id);
+
+        $banInfo = new profile;
+        $banInfo = $banInfo->getBanInfo($id);
+
+        $recentlyPlayedGames = new profile;
+        $recentlyPlayedGames = $recentlyPlayedGames->getRecentlyPlayedGames($id);
+
+        $playerLevel = new profile;
+        $playerLevel = $playerLevel->getPlayerLevel($id);
+
+        $profileBackground = new profile;
+        $profileBackground = $profileBackground->getProfileBackground($id);
+
+        $customFrame = new profile;
+        $customFrame = $customFrame->getAvatarFrame($id);
+
+        $ownedGames = new profile;
+        $ownedGames = $ownedGames->getOwnedGames($id);
+
+
+// PROFILE NOT FOUND OR PRIVATE
+
+        $gamedata = [];
+
+        if (!empty($data['response']['players'])) {
+            $gamedata['data'] = $data['response']['players'][0];
+        } else {
+            return redirect()->back();
+        }
+        if (!empty($banInfo)) {
+            $gamedata['banInfo'] = $banInfo['players'][0];
+        } else {
+            return redirect()->back();
+        }
+        if (!empty($recentlyPlayedGames['response']['games'])) {
+            $gamedata['recentlyPlayedGames'] = $recentlyPlayedGames['response']['games'];
+        }
+        if (!empty($playerLevel['response'])) {
+            $gamedata['playerLevel'] = $playerLevel['response'];
+        } else {
+            return redirect()->back();
+        }
+        if (!empty($profileBackground['response'])) {
+            $gamedata['profileBackground'] = $profileBackground['response']['profile_background'];
+        }
+        if(!empty($customFrame['response'])) {
+            $gamedata['customAvatarFrame'] = $customFrame['response']['avatar_frame'];
+        }
+        if(!empty(($ownedGames['response']))) {
+            $gamedata['ownedGames'] = $ownedGames['response'];
+        }
+
+        return Redirect::to('/user/'.$id);
+//        return view('profile', ['gamedata'=>$gamedata]);
+    }
+
+    public function test(){
+
+        return view('user');
     }
 
     /**

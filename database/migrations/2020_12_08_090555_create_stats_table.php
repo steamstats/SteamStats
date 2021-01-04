@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Games extends Migration
+class CreateStatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class Games extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('stats', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('appid');
-            $table->string('name', 255);
-            $table->integer('price')->nullable();
-            $table->string('price_formatted')->nullable();
-            $table->string('image', 255)->default("no image");
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class Games extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('stats');
     }
 }

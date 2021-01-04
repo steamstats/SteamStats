@@ -13,6 +13,10 @@ class Genre extends Model
         return $this->belongsToMany('App\Models\Game');
     }
 
+    public $table = "genres";
+
+    protected $guarded = [];
+
     protected $fillable = [
         'id',
         'name'
