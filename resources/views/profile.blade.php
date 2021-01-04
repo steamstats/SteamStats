@@ -35,7 +35,6 @@ $gameID = $gamedata['data']['gameid'] ?? '';
         {{session('error_user')}}
     </div>
 @endif
-@dd($gamedata)
 
 @if(!empty($gamedata['profileBackground']['image_large']))
     <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;top:0;width: 100%;height: 100%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
@@ -45,7 +44,7 @@ $gameID = $gamedata['data']['gameid'] ?? '';
             <div class="col-lg-8">
 
                 {{--        Main page       --}}
-                <div class="row h-100 mr-1 pt-3 profileBackground rounded">
+                <div class="row mr-1 pt-3 profileBackground rounded">
                     {{--        Profile image            --}}
                     <div class="col-md-3 p-2">
                         @if(!empty($gamedata['customAvatarFrame']['image_small']))
@@ -75,9 +74,10 @@ $gameID = $gamedata['data']['gameid'] ?? '';
 
                     {{--        Recently played games            --}}
                     @if(!empty($gamedata['recentlyPlayedGames']))
-                    <table class="table borderless text-white w-100">
+                    <table class="table borderless text-white m-0">
+
                         <thead>
-                            <th class="border-bottom-0 mx-1">Recently played games</th>
+                            <th class="border-bottom-0">Recently played games</th>
                         </thead>
                         <tbody>
                         @foreach ($gamedata['recentlyPlayedGames'] as $recentlyPlayedGame)
@@ -101,8 +101,9 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                                 </td>
                             </tr>
                         @endforeach
-                            @endif
+                        @endif
                         </tbody>
+
                     </table>
                 </div>
             </div>
