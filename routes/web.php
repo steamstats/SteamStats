@@ -44,6 +44,8 @@ Route::get('/games', [GamesController::class, 'index']);
 
 Route::get('/sort_genre', [GamesController::class, 'sortGenre']);
 
+Route::get('/sort_price', [GamesController::class, 'sortPrice']);
+
 Route::get('/sort_categories', [GamesController::class, 'sortCategories']);
 
 Route::get('/search', [GamesController::class, 'search']);

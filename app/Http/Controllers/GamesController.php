@@ -80,28 +80,62 @@ class GamesController extends Controller
 
         $inputs = $request->input();
 
-        $games = gameModel::select('games.*')
-            ->join('game_genre', 'games.id', '=', 'game_genre.game_id')
-            ->join('genres', 'game_genre.genre_id', '=', 'genres.id')
-            ->Where(function ($query) use($inputs) {
-                foreach($inputs as $key => $input){
-                    if($key != 'page'){
-                        $query->orwhere('genres.id', $input);
+        if (!empty($inputs)) {
+
+            $games = gameModel::select('games.*')
+                ->join('game_genre', 'games.id', '=', 'game_genre.game_id')
+                ->join('genres', 'game_genre.genre_id', '=', 'genres.id')
+                ->Where(function ($query) use($inputs) {
+                    foreach($inputs as $key => $input){
+                        if($key != 'page'){
+                            $query->orwhere('genres.id', $input);
+                        }
                     }
-                }
-            })
-            ->distinct('games.id')
-            ->sortable()
-            ->paginate(15);
+                })
+                ->distinct('games.id')
+                ->sortable()
+                ->paginate(15);
 
             $genres = $this->genres;
             $categories = $this->categories;
+
+            return view('games.games')
+                ->with('games', $games)
+                ->with('genres', $genres)
+                ->with('categories', $categories);
+        }
+        else {
+            return back();
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Application|Factory|View|Response
+     */
+    public function sortPrice(Request $request){
+
+        // dd($request->input('price_range'));
+
+        $price_range = explode('-', $request->input('price_range'));
+
+        $minPrice = intval($price_range[0]) * 100;
+        $maxPrice = intval($price_range[1]) * 100;
+
+        $games = gameModel::select('games.*')
+            ->whereBetween('price', [$minPrice, $maxPrice])
+            ->sortable()
+            ->paginate(15);
+
+        $genres = $this->genres;
+        $categories = $this->categories;
 
         return view('games.games')
             ->with('games', $games)
             ->with('genres', $genres)
             ->with('categories', $categories);
-
     }
 
 
