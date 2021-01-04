@@ -35,20 +35,13 @@ $gameID = $gamedata['data']['gameid'] ?? '';
         {{session('error_user')}}
     </div>
 @endif
-
+@dd($gamedata)
 
 @if(!empty($gamedata['profileBackground']['image_large']))
     <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;top:0;width: 100%;height: 100%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
 @endif
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-12 mb-3 p-3 profileBackground rounded">
-                <h4 class="text-center">Search player</h4>
-                <form action="/user" method="get" class="form-row">
-                    <input class="form-control btn-outline-primary bg-transparent mb-2 text-white" type="text" name="id" placeholder="Enter your steam id or VanityUrl">
-                    <input type="submit" class="form-control btn-outline-primary bg-transparent">
-                </form>
-            </div>
             <div class="col-lg-8">
 
                 {{--        Main page       --}}
@@ -82,7 +75,7 @@ $gameID = $gamedata['data']['gameid'] ?? '';
 
                     {{--        Recently played games            --}}
                     @if(!empty($gamedata['recentlyPlayedGames']))
-                    <table class="table borderless text-white mt-5 w-100">
+                    <table class="table borderless text-white w-100">
                         <thead>
                             <th class="border-bottom-0 mx-1">Recently played games</th>
                         </thead>
@@ -141,6 +134,13 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                         <p class="p-0 m-0">Game bans: @if($gamedata['banInfo']['NumberOfGameBans'] == false) None @else {{$gamedata['banInfo']['NumberOfGameBans']}} @endif</p>
                         <p class="p-0 m-0">Trade ban: @if($gamedata['banInfo']['EconomyBan'] == 'none') None @else {{$gamedata['banInfo']['EconomyBan']}} @endif</p>
                     </div>
+                </div>
+                <div class="py-3 px-3 mt-2 mb-3" style="background-color: #1b1e21">
+                    <h4>Search player:</h4>
+                    <form action="/user" method="get" class="form-row">
+                        <input class="form-control btn-outline-primary bg-transparent mb-2 text-white" type="text" name="id" placeholder="Enter your steam id or VanityUrl">
+                        <input type="submit" class="form-control btn-outline-primary bg-transparent">
+                    </form>
                 </div>
             </div>
         </div>

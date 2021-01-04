@@ -26,7 +26,7 @@
         </div>
         <br>
     @auth
-        <b class="text-secondary">You are signed in with Steamid: {{ Auth::user()->steamid }}. To see your profile click </b><a href="{{ url('/user/'.Auth::user()->steamid) }}">here </a><b class="text-secondary">or your avatar in the navbar to view your profile.</b>
+        <b class="text-secondary">You are signed in with Steamid: {{ Auth::user()->steamid }}. To see your profile click </b><a href="{{ url('/user/'.Auth::user()->steamid) }}">here</a><b class="text-secondary"> or your avatar in the navbar to view your profile.</b>
         @else
            <b class="text-secondary">If you want to access your own profile sign in with steam </b><a href='{{ url('/auth/steam') }}'>here.</a>
         @endif
