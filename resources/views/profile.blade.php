@@ -27,7 +27,6 @@ $lastLogoff = $gamedata['data']['lastlogoff'] ?? '';
 $timeCreated = $gamedata['data']['timecreated'] ?? '';
 $gameInfo = $gamedata['data']['gameextrainfo'] ?? '';
 $gameID = $gamedata['data']['gameid'] ?? '';
-//dd($gamedata['ownedGames']);
 ?>
 
 @if(session('error_user'))
@@ -115,6 +114,14 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                     <h4 class=text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
                     <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
+                </div>
+                {{--        Information        --}}
+                <div class="py-3 px-3 mt-3" style="background-color: #1b1e21">
+                    <h4>Information:</h4>
+                    <div class="p-3" style="background-color: #15191a">
+                        <p class="p-0 m-0">Badges: @if(isset($gamedata['ownedBadges']['badges'])) {{count($gamedata['ownedBadges']['badges'])}} @else N/A @endif</p>
+                        <p class="p-0 m-0">Friends: @if(isset($gamedata['friendList'])) {{count($gamedata['friendList'])}} @else N/A @endif</p>
+                    </div>
                 </div>
 
                 {{--        Game stats        --}}
