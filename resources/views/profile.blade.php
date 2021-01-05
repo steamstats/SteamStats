@@ -27,6 +27,25 @@ $lastLogoff = $gamedata['data']['lastlogoff'] ?? '';
 $timeCreated = $gamedata['data']['timecreated'] ?? '';
 $gameInfo = $gamedata['data']['gameextrainfo'] ?? '';
 $gameID = $gamedata['data']['gameid'] ?? '';
+$currentLevel = $gamedata['playerLevel']['player_xp_needed_current_level'] ?? '';
+$neededLevel = $gamedata['playerLevel']['player_xp_needed_to_level_up'] ?? '';
+$playerXp = $gamedata['playerLevel']['player_xp'] ?? '';
+
+$currentPlayerXp = $playerXp - $currentLevel;
+
+$totalXp = $currentPlayerXp + $neededLevel;
+
+$percentage = ($currentPlayerXp*100)/$totalXp;
+
+function get_percentage($total, $number)
+{
+  if ( $total > 0 ) {
+   return round($number * ($total / 100),2);
+  } else {
+    return 0;
+  }
+}
+
 ?>
 
 @if(session('error_user'))
@@ -112,6 +131,13 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                 {{--        Level        --}}
                 <div class="pl-3 py-5" style="background-color: #1b1e21">
                     <h4 class=text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
+                   <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{ $currentPlayerXp = $playerXp - $currentLevel }} / {{ $totalXp = $currentPlayerXp + $neededLevel }}</span></p>
+                    <div class="progress" style="width:95%">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{$neededLevel}}xp still needed</span></p>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
                     <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
                 </div>
