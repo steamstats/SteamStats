@@ -37,7 +37,7 @@ $gameID = $gamedata['data']['gameid'] ?? '';
 @endif
 
 @if(!empty($gamedata['profileBackground']['image_large']))
-    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;top:0;width: 100%;height: 100%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
+    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;width:100%;top:0;height: 120%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
 @endif
     <div class="container mt-5">
         <div class="row">
@@ -90,13 +90,13 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                                     <img class="card-img-top noImageFound"
                                          src="https://piotrkowalski.pw/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" class="p-0">
                                 @endif
-                                <th  class="px-0 align-middle" style="width: 150px">
+                                <th  class="px-0" style="width: 150px">
                                     <a href="/game/{{ $recentlyPlayedGame['appid']}}" class="text-white">{{ !empty($recentlyPlayedGame['name']) ? $recentlyPlayedGame['name'] : "No name found" }}</a>
                                 </th>
-                                <td class="align-middle">
+                                <td>
                                     Last 2 weeks: {{ round($recentlyPlayedGame['playtime_2weeks'] / 60, 1) . " Hours" }}
                                 </td>
-                                <td class="align-middle">
+                                <td>
                                     Overall playtime: {{ round($recentlyPlayedGame['playtime_forever'] / 60, 1) . " Hours" }}
                                 </td>
                             </tr>

@@ -85,6 +85,14 @@ class AuthController extends Controller
         $user = User::where('steamid', $info->steamID64)->first();
 
         if (!is_null($user)) {
+
+            User::where('steamid', $info->steamID64)
+                ->update([
+                    'name' => $info->personaname,
+                    'avatar' => $info->avatarfull,
+                    'steamid' => $info->steamID64
+                ]);
+
             return $user;
         }
 

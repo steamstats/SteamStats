@@ -28,8 +28,6 @@ Route::get('/auth/steam', [AuthController::class, 'redirectToSteam']);
 
 Route::get('/auth/steam/handle', [AuthController::class, 'handle']);
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/user/{id}', [ProfileController::class, 'index']);
