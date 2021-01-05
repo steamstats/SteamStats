@@ -28,8 +28,6 @@ Route::get('/auth/steam', [AuthController::class, 'redirectToSteam']);
 
 Route::get('/auth/steam/handle', [AuthController::class, 'handle']);
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/user/{id}', [ProfileController::class, 'index']);
@@ -43,6 +41,8 @@ Route::get('/get_games', [GamesController::class, 'store']);
 Route::get('/games', [GamesController::class, 'index']);
 
 Route::get('/sort_genre', [GamesController::class, 'sortGenre']);
+
+Route::get('/sort_price', [GamesController::class, 'sortPrice']);
 
 Route::get('/sort_categories', [GamesController::class, 'sortCategories']);
 

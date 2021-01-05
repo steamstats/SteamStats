@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="container mt-5" >
+<div class="container mt-5 mb-5" >
     <div class="row">
-        <div class="col-9 offset-3 ">
+        <div class="col-8 offset-3 ">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#all_games" role="tab" aria-controls="all_games" aria-selected="true">All</a>
@@ -44,6 +44,29 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-3 h-100" >
+            <div class="p-3" style="background-color: #21262f">
+                <label for="prices"><h4 class="p-0 m-0">Price:</h4></label>
+                <form action="/sort_price" method="get" role="sortprice">
+                    <input type="checkbox" name="price_range" value="0-10">
+                    <label for="">€0 - €10</label><br>
+
+                    <input type="checkbox" name="price_range" value="10-30">
+                    <label for="">€10 - €30</label><br>
+
+                    <input type="checkbox" name="price_range" value="30-60">
+                    <label for="">€30 - €60</label><br>
+
+                    <input type="checkbox" name="price_range" value="60-100">
+                    <label for="">€60 - €100</label><br>
+
+                    <input type="checkbox" name="price_range" value="100-1000">
+                    <label for="">€100 - €1000</label><br>
+
+
+                    <button type="submit" value="submit" class="btn btn-dark">submit</button>
+                </form>
+            </div>
+            <br>
             <div class="p-3" style="background-color: #21262f">
                 <label for="genres"><h4 class="p-0 m-0">Genres:</h4></label>
                 <form action="/sort_genre" method="get" role="sortGenre">

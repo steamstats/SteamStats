@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Fonts -->
@@ -20,6 +21,7 @@
 
 
     <!-- Styles -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{ asset('css/bootstrap/bootstrap.min.css')}}">
     <link href="{{ asset('css/bootstrap/bootstrap-grid.min.css')}}">
     <link href="{{ asset('css/bootstrap/bootstrap-reboot.min.css')}}">

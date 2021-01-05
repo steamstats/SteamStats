@@ -27,9 +27,24 @@ $lastLogoff = $gamedata['data']['lastlogoff'] ?? '';
 $timeCreated = $gamedata['data']['timecreated'] ?? '';
 $gameInfo = $gamedata['data']['gameextrainfo'] ?? '';
 $gameID = $gamedata['data']['gameid'] ?? '';
+$currentLevel = $gamedata['playerLevel']['player_xp_needed_current_level'] ?? '';
+$neededLevel = $gamedata['playerLevel']['player_xp_needed_to_level_up'] ?? '';
+$playerXp = $gamedata['playerLevel']['player_xp'] ?? '';
 
+$currentPlayerXp = $playerXp - $currentLevel;
 
-//dd($gamedata['ownedGames']);
+$totalXp = $currentPlayerXp + $neededLevel;
+
+$percentage = ($currentPlayerXp*100)/$totalXp;
+
+function get_percentage($total, $number)
+{
+  if ( $total > 0 ) {
+   return round($number * ($total / 100),2);
+  } else {
+    return 0;
+  }
+}
 
 ?>
 
@@ -38,17 +53,16 @@ $gameID = $gamedata['data']['gameid'] ?? '';
         {{session('error_user')}}
     </div>
 @endif
-{{-- @dd($gamedata) --}}
 
 @if(!empty($gamedata['profileBackground']['image_large']))
-    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;top:0;width: 100%;height: 100%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
+    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/{{$gamedata['profileBackground']['image_large']}}" style="position: absolute;width:100%;top:0;height: 120%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
 @endif
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8">
 
                 {{--        Main page       --}}
-                <div class="row h-100 mr-1 pt-3 profileBackground rounded">
+                <div class="row mr-1 pt-3 profileBackground rounded">
                     {{--        Profile image            --}}
                     <div class="col-md-3 p-2">
                         @if(!empty($gamedata['customAvatarFrame']['image_small']))
@@ -78,9 +92,10 @@ $gameID = $gamedata['data']['gameid'] ?? '';
 
                     {{--        Recently played games            --}}
                     @if(!empty($gamedata['recentlyPlayedGames']))
-                    <table class="table borderless text-white w-100">
+                    <table class="table borderless text-white m-0">
+
                         <thead>
-                            <th class="border-bottom-0 mx-1">Recently played games</th>
+                            <th class="border-bottom-0">Recently played games</th>
                         </thead>
                         <tbody>
                         @foreach ($gamedata['recentlyPlayedGames'] as $recentlyPlayedGame)
@@ -93,19 +108,20 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                                     <img class="card-img-top noImageFound"
                                          src="https://piotrkowalski.pw/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" class="p-0">
                                 @endif
-                                <th  class="px-0 align-middle" style="width: 150px">
+                                <th  class="px-0" style="width: 150px">
                                     <a href="/game/{{ $recentlyPlayedGame['appid']}}" class="text-white">{{ !empty($recentlyPlayedGame['name']) ? $recentlyPlayedGame['name'] : "No name found" }}</a>
                                 </th>
-                                <td class="align-middle">
+                                <td>
                                     Last 2 weeks: {{ round($recentlyPlayedGame['playtime_2weeks'] / 60, 1) . " Hours" }}
                                 </td>
-                                <td class="align-middle">
+                                <td>
                                     Overall playtime: {{ round($recentlyPlayedGame['playtime_forever'] / 60, 1) . " Hours" }}
                                 </td>
                             </tr>
                         @endforeach
-                            @endif
+                        @endif
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -115,15 +131,25 @@ $gameID = $gamedata['data']['gameid'] ?? '';
                 {{--        Level        --}}
                 <div class="pl-3 py-5" style="background-color: #1b1e21">
                     <h4 class=text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
-                    <div class="xp-bar">
-                        {{-- $currentLevel = $gamedata['playerLevel']['player_xp_needed_current_level'] ?? '';
-                        $neededLevel = $gamedata['playerLevel']['player_xp_needed_to_level_up'] ?? '';
-                        $playerXp = $gamedata['playerLevel']['player_xp'] ?? ''; --}}
-                        {{-- {{ $currentPlayerXp = $playerXp - $currentLevel}} / {{ $currentPlayerXp + $neededLevel }} --}}
+                   <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{ $currentPlayerXp = $playerXp - $currentLevel }} / {{ $totalXp = $currentPlayerXp + $neededLevel }}</span></p>
+                    <div class="progress" style="width:95%">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%">
+                            <span class="sr-only"></span>
+                        </div>
                     </div>
+                    <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{$neededLevel}}xp still needed</span></p>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
                     <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
                 </div>
+                {{--        Information        --}}
+                <div class="py-3 px-3 mt-3" style="background-color: #1b1e21">
+                    <h4>Information:</h4>
+                    <div class="p-3" style="background-color: #15191a">
+                        <p class="p-0 m-0">Badges: @if(isset($gamedata['ownedBadges']['badges'])) {{count($gamedata['ownedBadges']['badges'])}} @else N/A @endif</p>
+                        <p class="p-0 m-0">Friends: @if(isset($gamedata['friendList'])) {{count($gamedata['friendList'])}} @else N/A @endif</p>
+                    </div>
+                </div>
+
                 {{--        Game stats        --}}
                 <div class="py-3 px-3 mt-3" style="background-color: #1b1e21">
                     <h4>Game stats:</h4>
