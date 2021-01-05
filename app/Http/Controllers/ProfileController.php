@@ -50,6 +50,12 @@ class ProfileController extends Controller
         $ownedGames = new profile;
         $ownedGames = $ownedGames->getOwnedGames($id);
 
+        $ownedBadges = new profile;
+        $ownedBadges = $ownedBadges->getBadges($id);
+
+        $friendList = new profile;
+        $friendList = $friendList->getFriendList($id);
+
         $playtimeForever = 0;
         if(isset($ownedGames['response']['games'])) {
             foreach ($ownedGames['response']['games'] as $test) {
@@ -90,6 +96,12 @@ class ProfileController extends Controller
             $gamedata['ownedGames'] = $ownedGames['response'];
             $gamedata['averagePlaytime'] = $averagePlaytime;
             $gamedata['hoursOnRecord'] = $hoursOnRecord;
+        }
+        if(!empty(($ownedBadges['response']))) {
+            $gamedata['ownedBadges'] = $ownedBadges['response'];
+        }
+        if(!empty(($friendList['friendslist']))) {
+            $gamedata['friendList'] = $friendList['friendslist']['friends'];
         }
 
         return view('profile', ['gamedata'=>$gamedata]);
@@ -155,6 +167,11 @@ class ProfileController extends Controller
         $ownedGames = new profile;
         $ownedGames = $ownedGames->getOwnedGames($id);
 
+        $ownedBadges = new profile;
+        $ownedBadges = $ownedBadges->getBadges($id);
+
+        $friendList = new profile;
+        $friendList = $friendList->getFriendList($id);
 
 // PROFILE NOT FOUND OR PRIVATE
 
@@ -186,6 +203,12 @@ class ProfileController extends Controller
         }
         if(!empty(($ownedGames['response']))) {
             $gamedata['ownedGames'] = $ownedGames['response'];
+        }
+        if(!empty(($ownedBadges['response']))) {
+            $gamedata['ownedBadges'] = $ownedBadges['response'];
+        }
+        if(!empty(($friendList['friendslist']))) {
+            $gamedata['friendList'] = $friendList['friendslist']['friends'];
         }
 
         return Redirect::to('/user/'.$id);

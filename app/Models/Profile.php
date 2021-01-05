@@ -44,30 +44,64 @@ class Profile extends Model
         return Http::get('http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='. $this->steamid .'&count=5')->json();
     }
 
+    /**
+     * @param $id
+     * @return array|mixed
+     */
     public function getPlayerLevel($id){
         $this->steamid = $id;
         return Http::get("https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid=".$this->steamid)->json();
     }
 
+    /**
+     * @param $id
+     * @return array|mixed
+     */
     public function getProfileBackground($id){
         $this->steamid = $id;
         return Http::get("https://api.steampowered.com/IPlayerService/GetProfileBackground/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid=".$this->steamid)->json();
 
     }
 
+    /**
+     * @param $id
+     * @return array|mixed
+     */
     public function getAvatarFrame($id){
         $this->steamid = $id;
         return Http::get("https://api.steampowered.com/IPlayerService/GetAvatarFrame/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid=".$this->steamid)->json();
     }
 
+    /**
+     * @param $id
+     * @return array|mixed
+     */
     public function getOwnedGames($id) {
         $this->steamid = $id;
         return Http::get('https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
     }
 
+    /**
+     * @param $id
+     * @return array|mixed
+     */
     public function resolveCustomURL($id){
         $this->customid = $id;
         return Http::get("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&vanityurl=".$this->customid)->json();
+    }
+
+    /**
+     * @param $id
+     * @return array|mixed
+     */
+    public function getBadges($id){
+        $this->steamid = $id;
+        return Http::get('https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
+    }
+
+    public function getFriendList($id){
+        $this->steamid = $id;
+        return Http::get('https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
     }
 
 //     WISHLIST API CALL   https://store.steampowered.com/wishlist/profiles/76561198088141566/wishlistdata/?p=0
