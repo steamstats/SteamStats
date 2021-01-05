@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/FeedEk-master/js/FeedEk.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -35,6 +36,7 @@
             color: white;
         }
     </style>
+
 </head>
 <body>
 
@@ -58,7 +60,7 @@
                     <a class="nav-link" href="{{ url('/searchuser') }}">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Placeholder</a>
+                    <a class="nav-link" href="{{ url('/news') }}">News</a>
                 </li>
             </ul>
         </div>

@@ -20,7 +20,6 @@
 
     }
 </script>
-<!-- <button onclick="showLevel(currentPlayerLevel)">kkr mooie button</button> -->
 
 <?php
 $lastLogoff = $gamedata['data']['lastlogoff'] ?? '';
@@ -37,14 +36,7 @@ $totalXp = $currentPlayerXp + $neededLevel;
 
 $percentage = ($currentPlayerXp*100)/$totalXp;
 
-function get_percentage($total, $number)
-{
-  if ( $total > 0 ) {
-   return round($number * ($total / 100),2);
-  } else {
-    return 0;
-  }
-}
+
 
 ?>
 
@@ -130,7 +122,7 @@ function get_percentage($total, $number)
             <div class="col-lg-4 pt-3 profileBackground rounded">
                 {{--        Level        --}}
                 <div class="pl-3 py-5" style="background-color: #1b1e21">
-                    <h4 class=text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
+                    <h4 class="text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
                    <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{ $currentPlayerXp = $playerXp - $currentLevel }} / {{ $totalXp = $currentPlayerXp + $neededLevel }}</span></p>
                     <div class="progress" style="width:95%">
                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%">
