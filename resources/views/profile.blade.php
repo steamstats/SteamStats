@@ -140,7 +140,6 @@ function get_percentage($total, $number)
                                 <span class="sr-only"></span>
                             </div>
                         </div>
-{{--                        <p class="text-white mr-3 p-3"><span data-toggle="tooltip" data-placement="right">{{$neededLevel}}xp still needed</span></p>--}}
                     </div>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
                     <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
