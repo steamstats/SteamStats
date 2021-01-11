@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+
+
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-6">
@@ -39,6 +41,39 @@
         </table>
     </div>
 </div>
+<?php
+
+
+
+
+?>
+<canvas id="SteamChart"></canvas>
+
+<script>
+    var Onlinedatastats = [];
+    Onlinedatastats.push("<?=$games['allCurrentOnline'][0]?>")
+
+
+    var ctx = document.getElementById('SteamChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: Onlinedatastats
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+console.log(Onlinedatastats);
+</script>
 
 
 

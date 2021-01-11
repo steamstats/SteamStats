@@ -71,3 +71,7 @@ Route::post('/updateReply', [ReplyController::class, 'update'])->name('updaterep
 Route::get('/deleteReply/{id}', [ReplyController::class, 'delete'])->name('deletereply');
 
 Route::post('/destroyReply', [ReplyController::class, 'destroy'])->name('destroyreply');
+
+Route::get('news', function(){
+    return view('news.newsfeed');
+});

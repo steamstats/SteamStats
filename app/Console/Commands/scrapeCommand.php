@@ -15,14 +15,14 @@ class scrapeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'scraper:start';
+    protected $signature = 'stat:update';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Updates charts every 5 minutes';
 
     /**
      * Create a new command instance.
