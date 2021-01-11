@@ -123,13 +123,16 @@ $percentage = ($currentPlayerXp*100)/$totalXp;
                 {{--        Level        --}}
                 <div class="pl-3 py-5" style="background-color: #1b1e21">
                     <h4 class="text-white">Level: <span id="divLevel" class="">{{ $gamedata['playerLevel']['player_level'] }}</span></h4>
-                   <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{ $currentPlayerXp = $playerXp - $currentLevel }} / {{ $totalXp = $currentPlayerXp + $neededLevel }}</span></p>
-                    <div class="progress" style="width:95%">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%">
-                            <span class="sr-only"></span>
+                    <div class="mr-3 mb-3 pb-3" style="background-color: #15191a">
+
+                        <p class="text-white mr-3 pt-3 pl-3 mb-0" ><span data-toggle="tooltip" data-placement="bottom" title="{{$neededLevel}} XP still needed to level up">{{ $currentPlayerXp = $playerXp - $currentLevel }} / {{ $totalXp = $currentPlayerXp + $neededLevel }} XP to next level</span><span class="float-right" data-toggle="tooltip" data-placement="bottom" title="Total player XP">{{ $gamedata['playerLevel']['player_xp']}} XP</span></p>
+
+                        <div class="progress mx-3 " style="height: 10px">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%">
+                                <span class="sr-only"></span>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right">{{$neededLevel}}xp still needed</span></p>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
                     <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
                 </div>

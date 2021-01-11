@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         
         Commands\dailyUpdate::class,
-        Commands\scrapeCommand::class
 
     ];
 
@@ -29,7 +28,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('daily:update')->daily();
 
-        $schedule->command('stat:update')->everyFiveMinutes();
     }
 
     /**
