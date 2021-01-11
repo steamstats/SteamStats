@@ -18,6 +18,11 @@ class Profile extends Model
 
     public $steamid;
     public $customid;
+    public $appid;
+    /**
+     * @var mixed
+     */
+
 
     /**
      * @return mixed
@@ -102,6 +107,12 @@ class Profile extends Model
     public function getFriendList($id){
         $this->steamid = $id;
         return Http::get('https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
+    }
+
+    public function getAchievementProgress($id, $apps){
+        $this->steamid = $id;
+        $this->appid = $apps;
+        return Http::get('http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid='.$this->appid.'&key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
     }
 
 //     WISHLIST API CALL   https://store.steampowered.com/wishlist/profiles/76561198088141566/wishlistdata/?p=0
