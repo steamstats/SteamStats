@@ -28,11 +28,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b62f6b-3370-43cf-b138-5a7dda03b453" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/homepage/csgo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/FeedEk.jquery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/FeedEk_demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/css/FeedEk.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/js/FeedEk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/js/FeedEk.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/FeedEk-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/news/newsfeed.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/scrapeCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/scrapeCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +269,7 @@
       <workItem from="1609962012341" duration="1881000" />
       <workItem from="1610022247900" duration="1243000" />
       <workItem from="1610230203636" duration="923000" />
-      <workItem from="1610374455953" duration="3577000" />
+      <workItem from="1610374455953" duration="3752000" />
     </task>
     <servers />
   </component>

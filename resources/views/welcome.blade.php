@@ -2,7 +2,6 @@
 @section('content')
 
     <img src="{{ asset('img/homepage/csgo.jpg') }}" style="position: absolute;width:100%;top:0;height: 120%;z-index: -1; -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));">
-
 <div class="container mt-3">
     <div class="row">
         <div class="col-lg-12" style="margin-top: 75px;">
@@ -48,6 +47,39 @@
         </table>
     </div>
 </div>
+<?php
+
+
+
+
+?>
+<canvas id="SteamChart"></canvas>
+
+<script>
+    var Onlinedatastats = [];
+    Onlinedatastats.push("<?=$games['allCurrentOnline'][0]?>")
+
+
+    var ctx = document.getElementById('SteamChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: Onlinedatastats
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+console.log(Onlinedatastats);
+</script>
 
 
 
