@@ -14,7 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         
-        Commands\dailyUpdate::class
+        Commands\dailyUpdate::class,
+        Commands\scrapeCommand::class
+
     ];
 
     /**
@@ -25,8 +27,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('daily:update')
-        ->daily();
+        $schedule->command('daily:update')->daily();
+
+        $schedule->command('stat:update')->everyFiveMinutes();
     }
 
     /**
@@ -41,3 +44,4 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
+

@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/FeedEk-master/js/FeedEk.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
