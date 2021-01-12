@@ -48,7 +48,7 @@
     </div>
     <div class="col-lg-12">
         <div class="row">
-            <div class="col-md-8 p-0">
+            <div class="col-md-8 pl-md-0">
                 <table class="table table-hover table-bordered table-dark " style="background-color: #21262f; opacity: 0.9">
                     <thead>
                         <tr>
@@ -70,56 +70,56 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-4 p-0">
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+            <div class="col-md-4 pr-md-0">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Counter-Strike:Global Offensive</div>
                     <div class="card-body">
                         <div id="divRss0"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Dota 2</div>
                     <div class="card-body">
                         <div id="divRss1"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Cyberpunk 2077</div>
                     <div class="card-body">
                         <div id="divRss2"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Player Unknown: Battlegrounds</div>
                     <div class="card-body">
                         <div id="divRss3"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Grand Theft Auto V</div>
                     <div class="card-body">
                         <div id="divRss4"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Rainbow six: Siege</div>
                     <div class="card-body">
                         <div id="divRss5"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Apex Legends</div>
                     <div class="card-body">
                         <div id="divRss6"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Destiny 2</div>
                     <div class="card-body">
                         <div id="divRss7"></div>
                     </div>
                 </div>
-                <div class="card text-white mb-3 float-right" style="max-width: 18rem;background-color: #21262f; opacity: 0.9">
+                <div class="card text-white mb-3" style="background-color: #21262f; opacity: 0.9">
                     <div class="card-header">Path of Exile</div>
                     <div class="card-body">
                         <div id="divRss8"></div>
