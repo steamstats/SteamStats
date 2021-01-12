@@ -29,7 +29,7 @@
         <div class="col-lg-12" style="margin-top: 75px;">
 
             <div class="my-3">
-                <img src="{{ asset('img/logo.png') }}" alt="logo" class="mx-auto d-block">
+                <img src="{{ asset('img/logo.png') }}" alt="logo" class="mx-auto d-block w-75 img-fluid">
             </div>
         </div>
 
