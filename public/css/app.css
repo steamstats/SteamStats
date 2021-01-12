@@ -11087,3 +11087,10 @@ a.text-dark:focus {
     font-size: 10px;
 
 }
+
+.link-hover:hover {
+    text-underline: none!important;
+    text-decoration: none;
+    border: 1px solid #999999;
+    border-radius: 5px;
+}
