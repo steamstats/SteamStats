@@ -135,7 +135,7 @@
 
 
 ?>
-<canvas id="SteamChart"></canvas>
+{{--<canvas id="SteamChart"></canvas>--}}
 
 <script>
     var Onlinedatastats = [];
