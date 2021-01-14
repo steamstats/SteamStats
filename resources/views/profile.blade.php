@@ -134,14 +134,17 @@ $percentage = ($currentPlayerXp*100)/$totalXp;
                         </div>
                     </div>
                     <p class="text-white mr-3 p-3" style="background-color: #15191a"><span data-toggle="tooltip" data-placement="right" title="Member since {{ gmdate('m-d-Y', $timeCreated) }}">{{ date('y') - gmdate('y', $timeCreated) }} years of service</span></p>
-                    <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}/wishlistdata/?p=0">View wishlist</a> <!-- Make into wishlist -->
+                    <a class="btn btn-dark" href="https://store.steampowered.com/wishlist/profiles/{{$gamedata['data']['steamid']}}">View wishlist</a> <!-- Make into wishlist -->
                 </div>
-                {{--        Information        --}}
+                {{--        Steam links        --}}
                 <div class="py-3 px-3 mt-3" style="background-color: #1b1e21">
-                    <h4>Information:</h4>
+                    <h4>Steam Links:</h4>
                     <div class="p-3" style="background-color: #15191a">
-                        <p class="p-0 m-0">Badges: @if(isset($gamedata['ownedBadges']['badges'])) {{count($gamedata['ownedBadges']['badges'])}} @else N/A @endif</p>
-                        <p class="p-0 m-0">Friends: @if(isset($gamedata['friendList'])) {{count($gamedata['friendList'])}} @else N/A @endif</p>
+                        <a href="{{$gamedata['data']['profileurl']}}/badges" class="px-1  m-0 text-white link-hover"> Badges: @if(isset($gamedata['ownedBadges']['badges'])) {{count($gamedata['ownedBadges']['badges'])}}@else N/A @endif</a><br>
+                        <a href="https://steamcommunity.com/profiles/{{$gamedata['data']['steamid']}}/friends/" class="px-1 m-0 text-white link-hover"> Friends: @if(isset($gamedata['friendList'])){{count($gamedata['friendList'])}}@else N/A @endif</a><br>
+                        <a href="https://steamcommunity.com/profiles/{{$gamedata['data']['steamid']}}/games/?tab=recent" class="px-1 m-0 text-white link-hover">Games</a><br>
+                        <a href="https://steamcommunity.com/profiles/{{$gamedata['data']['steamid']}}/inventory/" class="px-1 m-0 text-white link-hover">Inventory</a><br>
+                        <a href="https://steamcommunity.com/profiles/{{$gamedata['data']['steamid']}}/groups/" class="px-1 m-0 text-white link-hover">Groups</a>
                     </div>
                 </div>
 
