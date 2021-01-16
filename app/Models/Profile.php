@@ -17,7 +17,6 @@ class Profile extends Model
     ];
 
     public $steamid;
-    public $customid;
     public $appid;
     /**
      * @var mixed
@@ -28,7 +27,6 @@ class Profile extends Model
      * @return mixed
      */
     public function getProfileSummary($id){
-
         $this->steamid = $id;
         return Http::get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamids='. $this->steamid)->json();
     }
@@ -65,7 +63,6 @@ class Profile extends Model
     public function getProfileBackground($id){
         $this->steamid = $id;
         return Http::get("https://api.steampowered.com/IPlayerService/GetProfileBackground/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&steamid=".$this->steamid)->json();
-
     }
 
     /**
@@ -91,8 +88,8 @@ class Profile extends Model
      * @return array|mixed
      */
     public function resolveCustomURL($id){
-        $this->customid = $id;
-        return Http::get("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&vanityurl=".$this->customid)->json();
+        $this->steamid = $id;
+        return Http::get("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=3FE725B04637FA6637A3BA1684CFEEF9&vanityurl=".$this->steamid)->json();
     }
 
     /**
@@ -114,7 +111,4 @@ class Profile extends Model
         $this->appid = $apps;
         return Http::get('http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid='.$this->appid.'&key=3FE725B04637FA6637A3BA1684CFEEF9&steamid='.$this->steamid)->json();
     }
-
-//     WISHLIST API CALL   https://store.steampowered.com/wishlist/profiles/76561198088141566/wishlistdata/?p=0
-
 }

@@ -11016,14 +11016,14 @@ a.text-dark:focus {
 
 .avatarBorder {
     position: absolute;
-    top: 0;
+    top: 10px;
     z-index: 2;
     max-width: 180px;
 }
 
 .avatar {
     position: relative;
-    top: 10px;
+    top: 15px;
     left: 15px;
     max-width: 150px;
 }
@@ -11093,4 +11093,17 @@ a.text-dark:focus {
     text-decoration: none;
     border: 1px solid #999999;
     border-radius: 5px;
+}
+
+.menu:hover {
+    background-color: #3b4248;
+}
+
+.test2 {
+    margin-left: -100px;
+}
+@media only screen and (max-width: 971px) {
+    .test2 {
+        margin-left: 0px;
+    }
 }
