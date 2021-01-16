@@ -36,13 +36,13 @@
         <div class="col-md-6" style="margin-top: 75px;">
             <div class="alert alert-primary text-center" role="alert">
             <h5>Current online players:</h5>
-            <?= $games['allCurrentOnline'][0]?>
+                {{ $games['allCurrentOnline'][0] }}
             </div>
         </div>
         <div class="col-md-6" style="margin-top: 75px;">
             <div class="alert alert-primary text-center" role="alert">
             <h5>Peak Today:</h5>
-            <?= $games['allCurrentOnline'][1]?>
+            {{ $games['allCurrentOnline'][1] }}
             </div>
         </div>
     </div>
@@ -58,15 +58,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($games['topGamesNames'] as $key => $value) {
-                            echo '<tr>';
-                            echo '<td>' . $value . '</td>';
-                            echo '<td>' . $games['currentPlayers'][$key] . '</td>';
-                            echo '<td>' . $games['peakPlayers'][$key] . '</td>';
-                            echo '</tr>';
-                        }
-                        ?>
+                    @foreach($games['topGamesNames'] as $key => $value)
+                        <tr>
+                            <td>{{ $value }}</td>
+                            <td>{{ $games['currentPlayers'][$key] }}</td>
+                            <td>{{ $games['peakPlayers'][$key] }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

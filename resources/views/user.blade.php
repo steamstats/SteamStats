@@ -2,13 +2,6 @@
 
 @section('content')
 
-
-    @if(session('error_user'))
-        <div class="alert alert-danger text-center" role="alert">
-            {{session('error_user')}}
-        </div>
-    @endif
-
     <div class="container vh-100">
         <div class="col-md-12 mt-5">
             <h1 class="text-center">Search player</h1>

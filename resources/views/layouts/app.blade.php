@@ -50,7 +50,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
                     <a class="nav-link" href=""></a>
                 </li>
@@ -64,38 +64,78 @@
                     <a class="nav-link" href="{{ url('/news') }}">News</a>
                 </li>
             </ul>
-        </div>
-        @if (Route::has('login'))
-
-            <div class="hidden absolute top-0 right-0 px-5 py-2 sm:block">
-
+            @if (Route::has('login'))
                 @auth
-
-                    <ul class="navbar-nav mr-auto">
-                        <li class="dropdown">
-                            <a href="" class='dropdown-toggle' data-toggle='dropdown' style="color:white"><img class='img-rounded' src='{{ Auth::user()->avatar }}' style="border: 1px solid white;border-radius: 10%; width: 35px;  vertical-align: middle;">&nbsp;<b style="color: white">{{ Auth::user()->name }}</b><b class='caret'></b></a>
-                            <span class="dropdown-arrow" style="color: white;text-decoration: none"></span>
-                            <ul class="dropdown-menu bg-dark p-3" style="margin-top: 10px;z-index: 999">
-                                <li><a class="text-white" href="{{ url('/user/'.Auth::user()->steamid) }}" style="padding: .5rem 1.5rem;font-size: 14px;color: #4a5568">Profile</a></li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}" style="padding: .5rem 1.5rem;font-size: 14px;color: #4a5568">
-                                        @csrf
-                                        <a class="text-white" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown float-right">
+                    <a class="nav-link " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class='img-rounded' src='{{ Auth::user()->avatar }}' style="border: 1px solid white;border-radius: 10%; width: 35px;  vertical-align: middle;"></a>
+                    <div class="dropdown-menu bg-dark test2" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item menu text-white"><b>{{ Auth::user()->name }}</b></a>
+                        <a class="dropdown-item menu text-white" href="{{ url('/user/'.Auth::user()->steamid) }}">Profile</a>
+                            <form class="dropdown-item menu" method="POST" action="{{ route('logout') }}" style="padding: .5rem 1.5rem;font-size: 14px;color: #4a5568">
+                                @csrf
+                                <a class="text-white" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
 
                                                                 this.closest('form').submit();" style="padding: 0">
-                                            {{ __('Logout') }}
-                                        </a>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                @else
-                    <a href='{{ url('/auth/steam') }}'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a>
+                                    {{ __('Logout') }}
+                                </a>
+                            </form>
+                    </div>
+                    @else
+                        <a href='{{ url('/auth/steam') }}'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a>
+                    @endif
+
+                </li>
                 @endif
-            </div>
-        @endif
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link" href=""></a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link" href=""></a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link" href=""></a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link" href=""></a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link" href=""></a>--}}
+{{--                </li>--}}
+            </ul>
+        </div>
+{{--        @if (Route::has('login'))--}}
+
+{{--            <div class="hidden absolute top-0 right-0 px-5 py-2 sm:block">--}}
+
+{{--                @auth--}}
+
+{{--                    <ul class="navbar-nav mr-auto">--}}
+{{--                        <li class="dropdown">--}}
+{{--                            <a href="" class='dropdown-toggle' data-toggle='dropdown' style="color:white"><img class='img-rounded' src='{{ Auth::user()->avatar }}' style="border: 1px solid white;border-radius: 10%; width: 35px;  vertical-align: middle;">&nbsp;<b style="color: white">{{ Auth::user()->name }}</b><b class='caret'></b></a>--}}
+{{--                            <span class="dropdown-arrow" style="color: white;text-decoration: none"></span>--}}
+{{--                            <ul class="dropdown-menu bg-dark p-3" style="margin-top: 10px;z-index: 999">--}}
+{{--                                <li><a class="text-white" href="{{ url('/user/'.Auth::user()->steamid) }}" style="padding: .5rem 1.5rem;font-size: 14px;color: #4a5568">Profile</a></li>--}}
+{{--                                <li>--}}
+{{--                                    <form method="POST" action="{{ route('logout') }}" style="padding: .5rem 1.5rem;font-size: 14px;color: #4a5568">--}}
+{{--                                        @csrf--}}
+{{--                                        <a class="text-white" href="{{ route('logout') }}"--}}
+{{--                                           onclick="event.preventDefault();--}}
+
+{{--                                                                this.closest('form').submit();" style="padding: 0">--}}
+{{--                                            {{ __('Logout') }}--}}
+{{--                                        </a>--}}
+{{--                                    </form>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                @else--}}
+{{--                    <a href='{{ url('/auth/steam') }}'><img src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'></a>--}}
+{{--                @endif--}}
+{{--            </div>--}}
+{{--        @endif--}}
     </nav>
 
     <main class="">
